@@ -18,9 +18,7 @@ export class SkillTags extends React.Component {
     recommendation: PropTypes.string,
   };
 
-  state = {
-    inputValue: ''
-  };
+  inputComp;
 
   componentWillReceiveProps(nextProps) {
     // Should be a controlled component.
@@ -35,11 +33,6 @@ export class SkillTags extends React.Component {
     this.props.onChange(Object.assign({}, changedValue));
   };
 
-  handleChange = (e) => {
-    const value = e.target.value;
-    this.setState({inputValue: value});
-  };
-
   handleTagClose = (tag) => {
     const newValue = this.props.value.tags.filter(tagName => tagName !== tag);
     this.triggerChange({tags:newValue});
@@ -47,10 +40,11 @@ export class SkillTags extends React.Component {
 
   handlePressEnter = (e) => {
     if (!e.target.value) return;
-    const newValue = this.props.value.tags.concat(e.target.value);
+    console.log('PressEnter', this.inputComp.input.value, this.inputComp);
+    const newValue = this.props.value.tags.concat(this.inputComp.input.value);
     this.triggerChange({tags:newValue});
 
-    this.setState({inputValue: ''});
+    this.inputComp.input.value = '';
   };
 
   handleRecommendedTagClick = (tag) => {
@@ -61,8 +55,7 @@ export class SkillTags extends React.Component {
   render() {
     return (
       <div>
-        <Input value={this.state.inputValue}
-               onChange={this.handleChange}
+        <Input ref={comp => this.inputComp = comp}
                onPressEnter={this.handlePressEnter}
         />
         <RecommendedTags
@@ -71,7 +64,6 @@ export class SkillTags extends React.Component {
           currentSelectedTags={this.props.value.tags}
           onClick={this.handleRecommendedTagClick}
           threshold={5}/>
-
         <div>
           <h6>已选技能({this.props.value.tags.length}/15)</h6>
           {console.log('SkillTags props now:', this.props, this.props.value)}
