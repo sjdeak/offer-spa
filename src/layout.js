@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
-import 'antd/dist/antd.css';
+import React, { Component } from "react";
+import "./App.css";
+import "antd/dist/antd.css";
 import { BasicForm } from "./BasicForm";
 import { SkillForm } from "./SkillForm";
-import {ExperienceForm} from "./ExperienceForm";
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { ExperienceForm } from "./ExperienceForm";
+import { Layout, Menu, Breadcrumb, Icon } from "antd";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
-
 
 class App extends Component {
   render() {
@@ -20,21 +19,21 @@ class App extends Component {
             <Menu
               theme="dark"
               mode="horizontal"
-              defaultSelectedKeys={['2']}
-              style={{ lineHeight: '64px' }}
+              defaultSelectedKeys={["2"]}
+              style={{ lineHeight: "64px" }}
             >
               <Menu.Item key="1">nav 1</Menu.Item>
               <Menu.Item key="2">nav 2</Menu.Item>
               <Menu.Item key="3">关于我</Menu.Item>
             </Menu>
           </Header>
-          <Content style={{ padding: '0 50px' }}>
-            <Layout style={{ padding: '24px 0', background: '#fff' }}>
-              <Sider width={200} style={{ background: '#fff' }}>
+          <Content style={{ padding: "0 50px" }}>
+            <Layout style={{ padding: "24px 0", background: "#fff" }}>
+              <Sider width={200} style={{ background: "#fff" }}>
                 <Menu
                   mode="inline"
-                  defaultSelectedKeys={['9']}
-                  style={{ height: '100%' }}
+                  defaultSelectedKeys={["9"]}
+                  style={{ height: "100%" }}
                 >
                   <Menu.Item key="9">option9</Menu.Item>
                   <Menu.Item key="10">option10</Menu.Item>
@@ -44,13 +43,13 @@ class App extends Component {
                 </Menu>
               </Sider>
 
-              <Content style={{ padding: '0 24px', minHeight: 280 }}>
+              <Content style={{ padding: "0 24px", minHeight: 280 }}>
                 Content
               </Content>
             </Layout>
           </Content>
 
-          <Footer style={{ textAlign: 'center' }}>
+          <Footer style={{ textAlign: "center" }}>
             简历管理模块 ©2018 Created by Jun Shen
           </Footer>
         </Layout>
@@ -60,4 +59,3 @@ class App extends Component {
 }
 
 export default App;
-

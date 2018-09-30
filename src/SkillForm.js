@@ -1,40 +1,56 @@
 import React from "react";
-import { Upload, InputNumber, Form, Input, Tooltip,
-  Icon, Cascader, Select, Row, Col, Checkbox, Radio, Button, AutoComplete } from 'antd';
-import {SkillTags} from "./SkillTags";
-import {DIRECTIONS, TIME} from './consts'
-import {message} from "antd/lib/index";
+import {
+  Upload,
+  InputNumber,
+  Form,
+  Input,
+  Tooltip,
+  Icon,
+  Cascader,
+  Select,
+  Row,
+  Col,
+  Checkbox,
+  Radio,
+  Button,
+  AutoComplete
+} from "antd";
+import { SkillTags } from "./SkillTags";
+import { DIRECTIONS, TIME } from "./consts";
+import { message } from "antd/lib/index";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;
 const Option = Select.Option;
 
-
-
 class RawSkillForm extends React.Component {
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     this.props.form.validateFieldsAndScroll((err, values) => {
-      console.log('form submitted: ', this.state);
+      console.log("form submitted: ", this.state);
       if (!err) {
-        console.log('SkillForm即将派发Action: ', values);
-        this.props.onFormSubmit('SUBMIT_SKILL', values);
-        message.success('保存成功');
+        console.log("SkillForm即将派发Action: ", values);
+        this.props.onFormSubmit("SUBMIT_SKILL", values);
+        message.success("保存成功");
       }
     });
   };
 
-  handleSelectChange = (value) => {
-    this.props.form.setFieldsValue({'positions': []});
+  handleSelectChange = value => {
+    this.props.form.setFieldsValue({ positions: [] });
   };
 
   calculatePositionsCheckboxOptions = () => {
-    console.log('start calculatePositionsCheckboxOptions()', this.props.form.getFieldsValue());
-    const currentSelectedPositions = this.props.form.getFieldValue('positions');
+    console.log(
+      "start calculatePositionsCheckboxOptions()",
+      this.props.form.getFieldsValue()
+    );
+    const currentSelectedPositions = this.props.form.getFieldValue("positions");
     let rawOptions = Array.from(
-      DIRECTIONS[this.props.form.getFieldValue('direction')].positions);
+      DIRECTIONS[this.props.form.getFieldValue("direction")].positions
+    );
 
     if (currentSelectedPositions && currentSelectedPositions.length === 2) {
       rawOptions = rawOptions.map(o => {
@@ -45,23 +61,28 @@ class RawSkillForm extends React.Component {
       });
     }
 
-    console.log('calculating Positions results: ', rawOptions);
+    console.log("calculating Positions results: ", rawOptions);
     return rawOptions;
   };
 
   calculateRecommendation = () => {
-    const currentSelectedPositions = this.props.form.getFieldValue('positions');
-    console.log('calculateRecommendation', currentSelectedPositions);
+    const currentSelectedPositions = this.props.form.getFieldValue("positions");
+    console.log("calculateRecommendation", currentSelectedPositions);
     if (!currentSelectedPositions.length) return [];
 
     // consts.js里目前选的职业方向下的所有职位
-    const positions = DIRECTIONS[this.props.form.getFieldValue('direction')].positions;
+    const positions =
+      DIRECTIONS[this.props.form.getFieldValue("direction")].positions;
 
-    return positions.find(p => p.value === currentSelectedPositions[currentSelectedPositions.length-1]).recommendation;
+    return positions.find(
+      p =>
+        p.value ===
+        currentSelectedPositions[currentSelectedPositions.length - 1]
+    ).recommendation;
   };
 
-  handleKeyPress = (e) => {
-    console.log('KeyPressing', e, e.keyCode);
+  handleKeyPress = e => {
+    console.log("KeyPressing", e, e.keyCode);
     // return e.keyCode !== 0;
     return false;
   };
@@ -70,49 +91,46 @@ class RawSkillForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <Form onSubmit={this.handleSubmit} >
-        <FormItem label={'职业方向'}>
-          {
-            getFieldDecorator('direction')(
-              // 尝试手动监听onChange事件
-              <Select onChange={this.handleSelectChange}>
-                {Object.keys(DIRECTIONS).map((value) => (
-                  <Option value={value}>{DIRECTIONS[value].label}</Option>
-                ))}
-              </Select>
-            )
-          }
+      <Form onSubmit={this.handleSubmit}>
+        <FormItem label={"职业方向"}>
+          {getFieldDecorator("direction")(
+            // 尝试手动监听onChange事件
+            <Select onChange={this.handleSelectChange}>
+              {Object.keys(DIRECTIONS).map(value => (
+                <Option value={value}>{DIRECTIONS[value].label}</Option>
+              ))}
+            </Select>
+          )}
         </FormItem>
 
-        <FormItem label={'你在该职业方向上有多长时间的工作经验'}>
-          {
-            getFieldDecorator('direction_time', {
-              rules: [
-                {required: true, message: '请选择工作年数'}
-              ]
-            })(
-              <Select>
-                {TIME.map(({label, value}) => (
-                  <Option value={value}>{label}</Option>
-                ))}
-              </Select>
-            )
-          }
+        <FormItem label={"你在该职业方向上有多长时间的工作经验"}>
+          {getFieldDecorator("direction_time", {
+            rules: [{ required: true, message: "请选择工作年数" }]
+          })(
+            <Select>
+              {TIME.map(({ label, value }) => (
+                <Option value={value}>{label}</Option>
+              ))}
+            </Select>
+          )}
         </FormItem>
 
-        <FormItem label={'选择你期望从事的职位(最多选择两项)'}>
+        <FormItem label={"选择你期望从事的职位(最多选择两项)"}>
           {/*{console.log('calculateOptions!!', this.calculatePositionsCheckboxOptions())}*/}
-          {getFieldDecorator('positions', {
-            rules: [
-              { required: true, message: '请选择职位!' },
-            ]})(
-            <CheckboxGroup style={{width: '100%'}}>
+          {getFieldDecorator("positions", {
+            rules: [{ required: true, message: "请选择职位!" }]
+          })(
+            <CheckboxGroup style={{ width: "100%" }}>
               {/*options={this.calculatePositionsCheckboxOptions()}*/}
               <Row>
                 {this.calculatePositionsCheckboxOptions().map(p => (
                   <Col span={6}>
-                    <Checkbox value={p.value} disabled={p.disabled ? p.disabled : false}>
-                      {p.label}</Checkbox>
+                    <Checkbox
+                      value={p.value}
+                      disabled={p.disabled ? p.disabled : false}
+                    >
+                      {p.label}
+                    </Checkbox>
                   </Col>
                 ))}
               </Row>
@@ -120,38 +138,37 @@ class RawSkillForm extends React.Component {
           )}
         </FormItem>
 
-        {
-          this.props.form.getFieldValue('positions') ?
-          this.props.form.getFieldValue('positions').map(positionValue => (
+        {this.props.form.getFieldValue("positions")
+          ? this.props.form.getFieldValue("positions").map(positionValue => (
               <FormItem label={`你在${positionValue}上有多长时间的工作经验`}>
-                {
-                  getFieldDecorator(positionValue, {
-                    initialValue: '0',
-                  })(
-                    <Select>
-                      {TIME.map(({label, value}) => (
-                        <Option value={value}>{label}</Option>
-                      ))}
-                    </Select>
-                  )
-                }
+                {getFieldDecorator(positionValue, {
+                  initialValue: "0"
+                })(
+                  <Select>
+                    {TIME.map(({ label, value }) => (
+                      <Option value={value}>{label}</Option>
+                    ))}
+                  </Select>
+                )}
               </FormItem>
-            )
-          ) : null
-        }
+            ))
+          : null}
 
-        <FormItem label={'职业技能(按回车键添加)'}>
+        <FormItem label={"职业技能(按回车键添加)"}>
           {/*['ts1', 'ts2', 'ts3', 'ts4', 'ts5', 'ts6', 'ts7']*/}
           {/*this.calculateRecommendation()*/}
-          {getFieldDecorator('skills')(
-            <SkillTags
-              recommendation={this.calculateRecommendation()}/>)
-          }
+          {getFieldDecorator("skills")(
+            <SkillTags recommendation={this.calculateRecommendation()} />
+          )}
         </FormItem>
 
-        <Row type={'flex'} justify={'center'}>
-          <Button htmlType="submit" disabled style={{display: 'none'}}>Fake</Button>
-          <Button type={'primary'} htmlType="submit">保存</Button>
+        <Row type={"flex"} justify={"center"}>
+          <Button htmlType="submit" disabled style={{ display: "none" }}>
+            Fake
+          </Button>
+          <Button type={"primary"} htmlType="submit">
+            保存
+          </Button>
         </Row>
       </Form>
     );
@@ -159,13 +176,16 @@ class RawSkillForm extends React.Component {
 }
 
 let state = {
-  direction: '...',
+  direction: "...",
   direction_time: 3,
-  positions: ['...', '...'],
+  positions: ["...", "..."],
   python: 1,
   cs: 2,
-  positions_time: [{position: 'python', time: 1}, {position: 'c#', time: 2}],
-  skills: ['...', '...', '...']  // 不需要value，只是技能名字符串的集合
+  positions_time: [
+    { position: "python", time: 1 },
+    { position: "c#", time: 2 }
+  ],
+  skills: ["...", "...", "..."] // 不需要value，只是技能名字符串的集合
 };
 
 export const SkillForm = Form.create({
@@ -174,11 +194,14 @@ export const SkillForm = Form.create({
 
     return {
       direction: createFormField({ value: props.storeValue.direction }),
-      direction_time: createFormField({ value: props.storeValue.direction_time }),
+      direction_time: createFormField({
+        value: props.storeValue.direction_time
+      }),
       positions: createFormField({ value: props.storeValue.positions }),
-      positions_time: createFormField({ value: props.storeValue.positions_time }),
-      skills: createFormField({ value: {tags: props.storeValue.skills} }),  // 为了和自定义组件的数据格式一致而不得不加的
+      positions_time: createFormField({
+        value: props.storeValue.positions_time
+      }),
+      skills: createFormField({ value: { tags: props.storeValue.skills } }) // 为了和自定义组件的数据格式一致而不得不加的
     };
-  },
+  }
 })(RawSkillForm);
-

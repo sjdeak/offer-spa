@@ -1,9 +1,22 @@
 import React from "react";
 import {
-  Upload, InputNumber, Form, Input, Tooltip, Tag,
-  Icon, Cascader, Select, Row, Col, Checkbox, Radio, Button, AutoComplete
-} from 'antd';
-import PropTypes from 'prop-types';
+  Upload,
+  InputNumber,
+  Form,
+  Input,
+  Tooltip,
+  Tag,
+  Icon,
+  Cascader,
+  Select,
+  Row,
+  Col,
+  Checkbox,
+  Radio,
+  Button,
+  AutoComplete
+} from "antd";
+import PropTypes from "prop-types";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -11,16 +24,15 @@ const CheckboxGroup = Checkbox.Group;
 const Option = Select.Option;
 const CheckableTag = Tag.CheckableTag;
 
-
 export class SkillTags extends React.Component {
   static propTypes = {
     value: PropTypes.array,
-    recommendation: PropTypes.string,
+    recommendation: PropTypes.string
   };
 
   inputComp;
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Should be a controlled component.
     // if ('value' in nextProps) {
     //   const value = nextProps.value;
@@ -28,54 +40,63 @@ export class SkillTags extends React.Component {
     // }
   }
 
-  triggerChange = (changedValue) => {
+  triggerChange = changedValue => {
     // Should provide an event to pass value to Form.
     this.props.onChange(Object.assign({}, changedValue));
   };
 
-  handleTagClose = (tag) => {
+  handleTagClose = tag => {
     const newValue = this.props.value.tags.filter(tagName => tagName !== tag);
-    this.triggerChange({tags:newValue});
+    this.triggerChange({ tags: newValue });
   };
 
-  handlePressEnter = (e) => {
+  handlePressEnter = e => {
     if (!e.target.value) return;
-    console.log('PressEnter', this.inputComp.input.value, this.inputComp);
+    console.log("PressEnter", this.inputComp.input.value, this.inputComp);
     const newValue = this.props.value.tags.concat(this.inputComp.input.value);
-    this.triggerChange({tags:newValue});
+    this.triggerChange({ tags: newValue });
 
-    this.inputComp.input.value = '';
+    this.inputComp.input.value = "";
   };
 
-  handleRecommendedTagClick = (tag) => {
+  handleRecommendedTagClick = tag => {
     const newValue = this.props.value.tags.concat(tag);
-    this.triggerChange({tags:newValue});
+    this.triggerChange({ tags: newValue });
   };
 
   render() {
     return (
       <div>
-        <Input ref={comp => this.inputComp = comp}
-               onPressEnter={this.handlePressEnter}
+        <Input
+          ref={comp => (this.inputComp = comp)}
+          onPressEnter={this.handlePressEnter}
         />
         <RecommendedTags
           recommendation={this.props.recommendation}
           // recommendation={['ts1', 'ts2', 'ts3', 'ts4', 'ts5', 'ts6', 'ts7']}
           currentSelectedTags={this.props.value.tags}
           onClick={this.handleRecommendedTagClick}
-          threshold={5}/>
+          threshold={5}
+        />
         <div>
-          <h6>已选技能({this.props.value.tags.length}/15)</h6>
-          {console.log('SkillTags props now:', this.props, this.props.value)}
-          {
-            this.props.value.tags.map(tagName => {
-              console.log('rendering 已选技能:', tagName);
-              return <Tag closable key={tagName}
-                   afterClose={() => this.handleTagClose(tagName)}>
+          <h6>
+            已选技能(
+            {this.props.value.tags.length}
+            /15)
+          </h6>
+          {console.log("SkillTags props now:", this.props, this.props.value)}
+          {this.props.value.tags.map(tagName => {
+            console.log("rendering 已选技能:", tagName);
+            return (
+              <Tag
+                closable
+                key={tagName}
+                afterClose={() => this.handleTagClose(tagName)}
+              >
                 {tagName}
-                </Tag>;
-              })
-          }
+              </Tag>
+            );
+          })}
         </div>
       </div>
     );
@@ -92,23 +113,23 @@ class RecommendedTags extends React.Component {
 
     for (let i = 0; i < recommendation.length; i++) {
       const now = recommendation[i];
-      if (!this.props.currentSelectedTags.includes(now))
-        res.push(now);
-      if (res.length === this.props.threshold)
-        break;
+      if (!this.props.currentSelectedTags.includes(now)) res.push(now);
+      if (res.length === this.props.threshold) break;
     }
-    console.log('recommended res: ', res);
+    console.log("recommended res: ", res);
     return res;
   };
 
   render() {
     return (
       <div>
-        <h4 style={{ marginRight: 8, display: 'inline' }}>建议选择:</h4>
+        <h4 style={{ marginRight: 8, display: "inline" }}>建议选择:</h4>
         {this.calculateTagsToBeShown().map(tag => (
           <CheckableTag
             key={tag}
-            onChange={() => {this.props.onClick(tag)}}
+            onChange={() => {
+              this.props.onClick(tag);
+            }}
           >
             {tag}
           </CheckableTag>

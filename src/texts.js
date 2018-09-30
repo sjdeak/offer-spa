@@ -1,7 +1,7 @@
-import imgDirection from './img/direction.png';
-import imgExperience from './img/experience.png';
-import imgPositions from './img/positions.png';
-import imgSkillTag from './img/skillTag.png';
+import imgDirection from "./img/direction.png";
+import imgExperience from "./img/experience.png";
+import imgPositions from "./img/positions.png";
+import imgSkillTag from "./img/skillTag.png";
 
 const resumeTemplate = `
 # 个人信息
@@ -75,5 +75,3 @@ export const projectIntroText = `
 * CSS: 使用了弹性盒布局，以及antd的栅格系统
 
 `;
-
-
