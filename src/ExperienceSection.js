@@ -1,15 +1,10 @@
-import {Button, Checkbox, Col, DatePicker, Divider, Form, Icon, message, Modal, Radio, Row, Select} from "antd";
+import {Button, Col, Divider, Icon, message, Modal, Row} from "antd";
 import moment from "moment";
 import React from "react";
 import {ExperienceForm} from "./ExperienceForm";
 
 const ButtonGroup = Button.Group;
 
-const RangePicker = DatePicker.RangePicker;
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
-const CheckboxGroup = Checkbox.Group;
-const Option = Select.Option;
 const confirm = Modal.confirm;
 
 export class ExperienceSection extends React.Component {
