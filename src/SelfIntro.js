@@ -1,37 +1,38 @@
-import {Button, Row} from "antd";
-import React from "react";
+import {Button, Row} from "antd"
+import React from "react"
 // import LzEditor from './Editor/index.js';
-import LzEditor from "react-lz-editor";
+import LzEditor from "react-lz-editor"
 
 class Test extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       htmlContent: `<h1>Yankees, Peeking at the Red Sox, Will Soon Get an Eyeful</h1>
                 <p>Whenever Girardi stole a glance, there was rarely any good news for the Yankees. While Girardi’s charges were clawing their way to a split of their four-game series against the formidable Indians, the Boston Red Sox were plowing past the rebuilding Chicago White Sox, sweeping four games at Fenway Park.</p>`,
       markdownContent: "## HEAD 2 \n markdown examples \n ``` welcome ```",
       responseList: []
-    };
-    this.receiveHtml = this.receiveHtml.bind(this);
+    }
+    this.receiveHtml = this.receiveHtml.bind(this)
   }
 
   receiveHtml(content) {
-    console.log("recieved HTML content", content);
-    this.setState({ responseList: [] });
+    console.log("recieved HTML content", content)
+    this.setState({responseList: []})
   }
 
   render() {
-    let policy = "";
+    let policy = ""
     const uploadProps = {
       action: "http://v0.api.upyun.com/devopee",
       onChange: this.onChange,
       listType: "picture",
       fileList: this.state.responseList,
-      data: file => {},
+      data: file => {
+      },
       multiple: true,
       beforeUpload: this.beforeUpload,
       showUploadList: true
-    };
+    }
     return (
       <div>
         <div>Editor demo 1 (use default html format ):</div>
@@ -42,7 +43,7 @@ class Test extends React.Component {
           uploadProps={uploadProps}
           lang="en"
         />
-        <br />
+        <br/>
         <div>Editor demo 2 (use markdown format ):</div>
         <LzEditor
           active={true}
@@ -54,7 +55,7 @@ class Test extends React.Component {
           convertFormat="markdown"
         />
       </div>
-    );
+    )
   }
 }
 
@@ -64,18 +65,18 @@ export class SelfIntro extends React.Component {
       ? this.props.storeValue.content
       : "请在此填写个人描述",
     content: ""
-  };
+  }
 
   handleSubmit = () => {
     // SelfIntro用的Redux dispatch也是onFormSubmit，虽然意思有些混乱，但方便一点
-    console.log("Before Dispatch SelfIntro", this.state.content);
-    this.props.onFormSubmit("SUBMIT_SELF_INTRO", this.state.content);
-  };
+    console.log("Before Dispatch SelfIntro", this.state.content)
+    this.props.onFormSubmit("SUBMIT_SELF_INTRO", this.state.content)
+  }
 
   receiveMarkdown = content => {
-    console.log("recieved MD content", content);
-    this.setState({ content: content });
-  };
+    console.log("recieved MD content", content)
+    this.setState({content: content})
+  }
 
   insertTemplate = () => {
     //     const TEMPLATE = `<h2>个人简介</h2><p><br/></p>
@@ -87,14 +88,14 @@ export class SelfIntro extends React.Component {
 ## 技术经历和项目技术细节
 ## 其他开源项目和个人作品
 ## 理想团队
-`;
-    console.log(TEMPLATE);
+`
+    console.log(TEMPLATE)
 
     this.setState({
       importContent: TEMPLATE,
       content: TEMPLATE
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -112,7 +113,7 @@ export class SelfIntro extends React.Component {
         <Row
           type={"flex"}
           justify={"space-between"}
-          style={{ marginTop: "15px" }}
+          style={{marginTop: "15px"}}
         >
           <Button icon="plus" onClick={this.insertTemplate}>
             插入模板
@@ -122,6 +123,6 @@ export class SelfIntro extends React.Component {
           </Button>
         </Row>
       </div>
-    );
+    )
   }
 }

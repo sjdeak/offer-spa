@@ -199,16 +199,16 @@ const DIRECTIONS = {
       }
     ]
   }
-};
+}
 
 const TIME = [
-  { label: "一年以内", value: "0" },
-  { label: "一年", value: "1" },
-  { label: "两年", value: "2" },
-  { label: "三年", value: "3" },
-  { label: "四年", value: "4" },
-  { label: "五年", value: "5" },
-  { label: "五年以上", value: "6" }
-];
+  {label: "一年以内", value: "0"},
+  {label: "一年", value: "1"},
+  {label: "两年", value: "2"},
+  {label: "三年", value: "3"},
+  {label: "四年", value: "4"},
+  {label: "五年", value: "5"},
+  {label: "五年以上", value: "6"}
+]
 
-export { DIRECTIONS, TIME };
+export {DIRECTIONS, TIME}

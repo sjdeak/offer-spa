@@ -1,12 +1,12 @@
-import { Button, Layout } from "antd";
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
-import { getLabel } from "./antd-utility";
-import { DIRECTIONS, TIME } from "./consts";
-import { projectIntroText } from "./texts";
+import {Button, Layout} from "antd"
+import React from "react"
+import ReactMarkdown from "react-markdown"
+import {Link} from "react-router-dom"
+import {getLabel} from "./antd-utility"
+import {DIRECTIONS, TIME} from "./consts"
+import {projectIntroText} from "./texts"
 
-const { Header, Content, Footer, Sider } = Layout;
+const {Header, Content, Footer, Sider} = Layout
 
 const Show = props => {
   return (
@@ -26,8 +26,8 @@ const Show = props => {
           maxWidth: "1300px"
         }}
       >
-        <Content style={{ padding: "0 24px", minHeight: 280 }}>
-          <ReactMarkdown source={props.input} escapeHtml={false} />
+        <Content style={{padding: "0 24px", minHeight: 280}}>
+          <ReactMarkdown source={props.input} escapeHtml={false}/>
 
           {/*容器底部居右*/}
           {/*<Row type="flex" justify={'end'}>*/}
@@ -39,7 +39,7 @@ const Show = props => {
           {/*绝对定位 fixed*/}
           <Link
             to={"/resume"}
-            style={{ position: "fixed", bottom: "150px", right: "100px" }}
+            style={{position: "fixed", bottom: "150px", right: "100px"}}
           >
             <Button
               icon={"left"}
@@ -55,11 +55,11 @@ const Show = props => {
         </Content>
       </Layout>
     </Content>
-  );
-};
+  )
+}
 
 export const ResumeShow = props => {
-  const { basic, skill, experience, self_intro } = props.storeValue;
+  const {basic, skill, experience, self_intro} = props.storeValue
 
   const input = `
 # 个人信息
@@ -76,40 +76,40 @@ export const ResumeShow = props => {
   )}
 * 期望从事的职位
 ${skill.positions_time
-  .map(
-    ({ position, time }) =>
-      "  * " +
-      getLabel(DIRECTIONS[skill.direction].positions, position) +
-      "  " +
-      "工作经验: " +
-      time +
-      "年"
-  )
-  .join("\n")}
+    .map(
+      ({position, time}) =>
+        "  * " +
+        getLabel(DIRECTIONS[skill.direction].positions, position) +
+        "  " +
+        "工作经验: " +
+        time +
+        "年"
+    )
+    .join("\n")}
 * 职业技能: ${skill.skills.join(", ")}
 
 
 # 教育经历
 ${experience.educationRecords
-  .map(({ school, degree, major, duration }) =>
-    `
+    .map(({school, degree, major, duration}) =>
+      `
 * ${school}  ${degree}
   * 专业: ${major}
   * 时间: ${duration[0]} 至 ${duration[1]}
 `.trim()
-  )
-  .join("\n")}
+    )
+    .join("\n")}
 
 
 # 个人描述
 ${self_intro.content}
-`.trim();
+`.trim()
 
-  return <Show input={input} />;
-};
+  return <Show input={input}/>
+}
 
 export const ProjectShow = props => {
-  const input = projectIntroText;
+  const input = projectIntroText
 
-  return <Show input={input} />;
-};
+  return <Show input={input}/>
+}

@@ -1,21 +1,21 @@
-import {Button, Icon, Layout, Menu, Modal, Row} from "antd";
-import React, {Component} from "react";
-import {Link, Redirect, Route, Switch} from "react-router-dom";
-import "./App.css";
-import {client} from "./Client";
+import {Button, Icon, Layout, Menu, Modal, Row} from "antd"
+import React, {Component} from "react"
+import {Link, Redirect, Route, Switch} from "react-router-dom"
+import "./App.css"
+import {client} from "./Client"
 import {
   BasicFormContainer,
   ExperienceSectionContainer,
   ResumeShowContainer,
   SelfIntroContainer,
   SkillFormContainer
-} from "./Containers/FormContainer";
-import {Login} from "./Login";
-import {LoginRoute, PrivateRoute} from "./PrivateRoute";
-import {ProjectShow} from "./Show";
+} from "./Containers/FormContainer"
+import {Login} from "./Login"
+import {LoginRoute, PrivateRoute} from "./PrivateRoute"
+import {ProjectShow} from "./Show"
 
-const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
+const {SubMenu} = Menu
+const {Header, Content, Footer, Sider} = Layout
 
 // class App extends Component {
 //   render() {
@@ -39,7 +39,7 @@ class App extends Component {
       title: "联系方式",
       content: (
         <div>
-          <br />
+          <br/>
           <p>
             <b>手机:</b> 15927066787
           </p>
@@ -54,9 +54,10 @@ class App extends Component {
           </p>
         </div>
       ),
-      onOk() {}
-    });
-  };
+      onOk() {
+      }
+    })
+  }
 
   render() {
     return (
@@ -83,10 +84,10 @@ class App extends Component {
               <Menu.Item key="3" onClick={this.handleContactClick}>
                 联系我
               </Menu.Item>
-              <Menu.Item key="4" style={{ marginLeft: "auto" }}>
+              <Menu.Item key="4" style={{marginLeft: "auto"}}>
                 {client.isLoggedIn() ? (
                   <span>
-                    <Icon type="user" />
+                    <Icon type="user"/>
                     admin
                   </span>
                 ) : (
@@ -100,25 +101,25 @@ class App extends Component {
             <Route
               exact
               path={"/"}
-              render={() => <Redirect to={"/resume"} />}
+              render={() => <Redirect to={"/resume"}/>}
             />
 
             {/*region PrivateRoute*/}
-            <LoginRoute path={"/login"} component={Login} />
-            <PrivateRoute path={"/resume"} component={MainContent} />
-            <PrivateRoute path={"/show"} component={ResumeShowContainer} />
+            <LoginRoute path={"/login"} component={Login}/>
+            <PrivateRoute path={"/resume"} component={MainContent}/>
+            <PrivateRoute path={"/show"} component={ResumeShowContainer}/>
             {/*endregion*/}
 
-            <Route path={"/project-intro"} component={ProjectShow} />
-            <Route render={() => <Redirect to={"/404"} />} />
+            <Route path={"/project-intro"} component={ProjectShow}/>
+            <Route render={() => <Redirect to={"/404"}/>}/>
           </Switch>
 
-          <Footer style={{ textAlign: "center" }}>
+          <Footer style={{textAlign: "center"}}>
             简历管理模块 ©2018 Created by Jun Shen
           </Footer>
         </Layout>
       </div>
-    );
+    )
   }
 }
 
@@ -138,11 +139,11 @@ const MainContent = () => (
         maxWidth: "1300px"
       }}
     >
-      <Sider width={200} style={{ background: "#fff" }}>
+      <Sider width={200} style={{background: "#fff"}}>
         <Menu
           mode="inline"
           defaultSelectedKeys={[window.location.pathname.slice(8)]}
-          style={{ height: "500px" }}
+          style={{height: "500px"}}
         >
           <Menu.Item key="basic">
             <Link to={"/resume/basic"}>个人信息</Link>
@@ -156,30 +157,30 @@ const MainContent = () => (
           <Menu.Item key="self-intro">
             <Link to={"/resume/self-intro"}>个人描述</Link>
           </Menu.Item>
-          <Row type="flex" justify={"center"} style={{ marginTop: "20px" }}>
-            <Button style={{ margin: "0 auto" }}>
+          <Row type="flex" justify={"center"} style={{marginTop: "20px"}}>
+            <Button style={{margin: "0 auto"}}>
               <Link to={"/show"}>查看简历</Link>
             </Button>
           </Row>
         </Menu>
       </Sider>
 
-      <Content style={{ padding: "0 24px", minHeight: 280 }}>
+      <Content style={{padding: "0 24px", minHeight: 280}}>
         <Route
           exact
           path={"/resume"}
-          render={() => <Redirect to={"/resume/basic"} />}
+          render={() => <Redirect to={"/resume/basic"}/>}
         />
-        <Route path={"/resume/basic"} component={BasicFormContainer} />
-        <Route path={"/resume/skill"} component={SkillFormContainer} />
+        <Route path={"/resume/basic"} component={BasicFormContainer}/>
+        <Route path={"/resume/skill"} component={SkillFormContainer}/>
         <Route
           path={"/resume/experience"}
           component={ExperienceSectionContainer}
         />
-        <Route path={"/resume/self-intro"} component={SelfIntroContainer} />
+        <Route path={"/resume/self-intro"} component={SelfIntroContainer}/>
       </Content>
     </Layout>
   </Content>
-);
+)
 
-export default App;
+export default App

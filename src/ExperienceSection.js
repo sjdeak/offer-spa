@@ -1,16 +1,11 @@
-import {Button, Checkbox, Col, DatePicker, Divider, Form, Icon, message, Modal, Radio, Row, Select} from "antd";
-import moment from "moment";
-import React from "react";
-import {ExperienceForm} from "./ExperienceForm";
+import {Button, Col, Divider, Icon, message, Modal, Row} from "antd"
+import moment from "moment"
+import React from "react"
+import {ExperienceForm} from "./ExperienceForm"
 
-const ButtonGroup = Button.Group;
+const ButtonGroup = Button.Group
 
-const RangePicker = DatePicker.RangePicker;
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
-const CheckboxGroup = Checkbox.Group;
-const Option = Select.Option;
-const confirm = Modal.confirm;
+const confirm = Modal.confirm
 
 export class ExperienceSection extends React.Component {
   // props是来自redux的state.experience
@@ -24,10 +19,10 @@ export class ExperienceSection extends React.Component {
         id: 0
       }
     ]
-  };
+  }
 
   handleFormEdit = values => {
-    const i = this.state.educationRecords.findIndex(r => r.id === values.id);
+    const i = this.state.educationRecords.findIndex(r => r.id === values.id)
     this.setState(
       {
         educationRecords: [
@@ -40,11 +35,11 @@ export class ExperienceSection extends React.Component {
         this.props.onExperienceChange(
           "SUBMIT_EXPERIENCE",
           this.state.educationRecords
-        );
-        message.success("修改成功");
+        )
+        message.success("修改成功")
       }
-    );
-  };
+    )
+  }
 
   handleFormAdd = values => {
     this.setState(
@@ -54,35 +49,36 @@ export class ExperienceSection extends React.Component {
             ...values,
             id: prevState.educationRecords.length
           })
-        };
+        }
       },
       () => {
         this.props.onExperienceChange(
           "SUBMIT_EXPERIENCE",
           this.state.educationRecords
-        );
-        message.success("添加成功");
+        )
+        message.success("添加成功")
       }
-    );
-  };
+    )
+  }
 
   handleDeleteClick = id => {
     confirm({
       title: "确定删除此条记录?",
       content: "该操作不可复原",
       onOk: () => {
-        this.deleteRecord(id);
+        this.deleteRecord(id)
       },
-      onCancel() {}
-    });
-  };
+      onCancel() {
+      }
+    })
+  }
 
   deleteRecord = id => {
-    const newRecords = this.state.educationRecords.filter(t => t.id !== id);
-    this.setState({ educationRecords: newRecords });
-    this.props.onExperienceChange("SUBMIT_EXPERIENCE", newRecords);
-    message.success("删除成功");
-  };
+    const newRecords = this.state.educationRecords.filter(t => t.id !== id)
+    this.setState({educationRecords: newRecords})
+    this.props.onExperienceChange("SUBMIT_EXPERIENCE", newRecords)
+    message.success("删除成功")
+  }
 
   render() {
     return (
@@ -100,33 +96,33 @@ export class ExperienceSection extends React.Component {
           />
         ))}
 
-        <ToggleableExperienceForm onFormSubmit={this.handleFormAdd} />
+        <ToggleableExperienceForm onFormSubmit={this.handleFormAdd}/>
       </div>
-    );
+    )
   }
 }
 
 class EditableRecord extends React.Component {
   state = {
     editFormOpen: false
-  };
+  }
 
   handleFormOpen = () => {
-    this.setState({ editFormOpen: true });
-  };
+    this.setState({editFormOpen: true})
+  }
 
   handleFormClose = () => {
-    this.setState({ editFormOpen: false });
-  };
+    this.setState({editFormOpen: false})
+  }
 
   handleFormSubmit = record => {
-    this.props.onFormSubmit(record);
-    this.setState({ editFormOpen: false });
-  };
+    this.props.onFormSubmit(record)
+    this.setState({editFormOpen: false})
+  }
 
   handleDeleteClick = id => {
-    this.props.onDeleteClick(id);
-  };
+    this.props.onDeleteClick(id)
+  }
 
   render() {
     if (this.state.editFormOpen) {
@@ -140,7 +136,7 @@ class EditableRecord extends React.Component {
           onFormSubmit={this.handleFormSubmit}
           onFormClose={this.handleFormClose}
         />
-      );
+      )
     } else {
       return (
         <div>
@@ -149,7 +145,7 @@ class EditableRecord extends React.Component {
             <Col span={20}>
               <Row type="flex" align={"top"}>
                 <Col span={2}>
-                  <Icon type="book" style={{ fontSize: 20 }} />
+                  <Icon type="book" style={{fontSize: 20}}/>
                   {/*style={{ fontSize: 32 }}*/}
                 </Col>
                 <Col span={18}>
@@ -174,12 +170,12 @@ class EditableRecord extends React.Component {
                   icon="delete"
                   onClick={() => this.handleDeleteClick(this.props.id)}
                 />
-                <Button icon={"edit"} onClick={this.handleFormOpen} />
+                <Button icon={"edit"} onClick={this.handleFormOpen}/>
               </ButtonGroup>
             </Col>
           </Row>
         </div>
-      );
+      )
     }
   }
 }
@@ -187,20 +183,20 @@ class EditableRecord extends React.Component {
 class ToggleableExperienceForm extends React.Component {
   state = {
     isOpen: false
-  };
+  }
 
   handleFormOpen = () => {
-    this.setState({ isOpen: true });
-  };
+    this.setState({isOpen: true})
+  }
 
   handleFormClose = () => {
-    this.setState({ isOpen: false });
-  };
+    this.setState({isOpen: false})
+  }
 
   handleFormSubmit = record => {
-    this.props.onFormSubmit(record);
-    this.setState({ isOpen: false });
-  };
+    this.props.onFormSubmit(record)
+    this.setState({isOpen: false})
+  }
 
   render() {
     if (this.state.isOpen) {
@@ -209,17 +205,17 @@ class ToggleableExperienceForm extends React.Component {
           onFormSubmit={this.handleFormSubmit}
           onFormClose={this.handleFormClose}
         />
-      );
+      )
     } else {
       return (
-        <Row type="flex" justify="center" style={{ marginTop: "25px" }}>
+        <Row type="flex" justify="center" style={{marginTop: "25px"}}>
           <Col span={8}>
             <Button type="primary" block onClick={this.handleFormOpen}>
               新增
             </Button>
           </Col>
         </Row>
-      );
+      )
     }
   }
 }

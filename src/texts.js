@@ -1,7 +1,7 @@
-import imgDirection from "./img/direction.png";
-import imgExperience from "./img/experience.png";
-import imgPositions from "./img/positions.png";
-import imgSkillTag from "./img/skillTag.png";
+import imgDirection from "./img/direction.png"
+import imgExperience from "./img/experience.png"
+import imgPositions from "./img/positions.png"
+import imgSkillTag from "./img/skillTag.png"
 
 const resumeTemplate = `
 # 个人信息
@@ -25,7 +25,7 @@ const resumeTemplate = `
 # 个人描述
 
 
-`;
+`
 
 // <a href="http://www.100offer.com/" target="_blank">100Offer</a>
 
@@ -74,4 +74,4 @@ export const projectIntroText = `
 * 脚手架工具: 官方的create-react-app
 * CSS: 使用了弹性盒布局，以及antd的栅格系统
 
-`;
+`

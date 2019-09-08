@@ -1,15 +1,15 @@
-import {combineReducers} from "redux";
+import {combineReducers} from "redux"
 
 const account = (state = false, action) => {
   switch (action.type) {
     case "LOGIN":
-      return true;
+      return true
     case "LOGOUT":
-      return false;
+      return false
     default:
-      return state;
+      return state
   }
-};
+}
 
 const resume = (
   state = {
@@ -25,7 +25,7 @@ const resume = (
       direction: "tech",
       direction_time: 3,
       positions: ["python"],
-      positions_time: [{ position: "python", time: 1 }],
+      positions_time: [{position: "python", time: 1}],
       skills: ["Flask"] // 不需要value，只是技能名字符串的集合
     },
     experience: {
@@ -53,30 +53,30 @@ const resume = (
   },
   action
 ) => {
-  console.log("resumeReducer", action.type, action.values);
+  console.log("resumeReducer", action.type, action.values)
   switch (action.type) {
     case "SUBMIT_BASIC":
-      return Object.assign(state, { basic: action.values });
+      return Object.assign(state, {basic: action.values})
     case "SUBMIT_SKILL":
       const newObj = Object.assign({}, action.values, {
         skills: action.values.skills.tags
-      });
-      return Object.assign(state, { skill: newObj });
+      })
+      return Object.assign(state, {skill: newObj})
     case "SUBMIT_EXPERIENCE":
       return Object.assign(state, {
-        experience: { educationRecords: action.values }
-      });
+        experience: {educationRecords: action.values}
+      })
     case "SUBMIT_SELF_INTRO":
-      return Object.assign(state, { self_intro: { content: action.values } });
+      return Object.assign(state, {self_intro: {content: action.values}})
     default:
-      return state;
+      return state
   }
-};
+}
 
 export const rootReducer = combineReducers({
   account,
   resume
-});
+})
 
 // const basic = (state = [], action) => {
 //   switch (action.type) {
