@@ -1,10 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-import { BasicForm } from "../BasicForm";
-import { SkillForm } from "../SkillForm";
-import { ExperienceSection } from "../ExperienceSection";
-import { SelfIntro } from "../SelfIntro";
-import { ResumeShow } from "../Show";
+import {connect} from "react-redux";
+import {BasicForm} from "../BasicForm";
+import {ExperienceSection} from "../ExperienceSection";
+import {SelfIntro} from "../SelfIntro";
+import {ResumeShow} from "../Show";
+import {SkillForm} from "../SkillForm";
 
 const mapStateToPropsBasic = (state, ownProps) => ({
   storeValue: state.resume.basic

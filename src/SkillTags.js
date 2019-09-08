@@ -1,22 +1,6 @@
-import React from "react";
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  Tag,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete
-} from "antd";
+import {Checkbox, Form, Input, Radio, Select, Tag} from "antd";
 import PropTypes from "prop-types";
+import React from "react";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;

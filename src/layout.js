@@ -1,10 +1,7 @@
+import { Layout, Menu } from "antd";
+import "antd/dist/antd.css";
 import React, { Component } from "react";
 import "./App.css";
-import "antd/dist/antd.css";
-import { BasicForm } from "./BasicForm";
-import { SkillForm } from "./SkillForm";
-import { ExperienceForm } from "./ExperienceForm";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;

@@ -1,22 +1,5 @@
+import {Button, Row} from "antd";
 import React from "react";
-import ReactDOM from "react-dom";
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete,
-  DatePicker
-} from "antd";
 // import LzEditor from './Editor/index.js';
 import LzEditor from "react-lz-editor";
 
@@ -31,10 +14,12 @@ class Test extends React.Component {
     };
     this.receiveHtml = this.receiveHtml.bind(this);
   }
+
   receiveHtml(content) {
     console.log("recieved HTML content", content);
     this.setState({ responseList: [] });
   }
+
   render() {
     let policy = "";
     const uploadProps = {

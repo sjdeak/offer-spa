@@ -1,21 +1,14 @@
-import React from "react";
 import {
-  Upload,
-  InputNumber,
+  Button,
   Form,
   Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
+  InputNumber,
+  message,
   Radio,
-  Button,
-  AutoComplete,
-  message
+  Row,
+  Select
 } from "antd";
+import React from "react";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;

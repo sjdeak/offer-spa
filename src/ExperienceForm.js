@@ -1,24 +1,15 @@
-import React from "react";
 import {
-  Upload,
-  InputNumber,
+  Button,
+  Checkbox,
+  DatePicker,
   Form,
   Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
   Radio,
-  Button,
-  AutoComplete,
-  DatePicker
+  Row,
+  Select
 } from "antd";
 import moment from "moment";
-import { SkillTags } from "./SkillTags";
-import { DIRECTIONS, TIME } from "./consts";
+import React from "react";
 
 const RangePicker = DatePicker.RangePicker;
 const FormItem = Form.Item;

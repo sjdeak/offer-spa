@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Route, Redirect } from "react-router-dom";
-import { client } from "./Client";
+import {Redirect, Route} from "react-router-dom";
+import {client} from "./Client";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   console.log("PrivateRouting", "client:", client.isLoggedIn(), Component);

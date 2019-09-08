@@ -1,26 +1,8 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import {Button, Checkbox, DatePicker, Form, Icon, Input, Layout, Menu, Radio, Select, Spin} from "antd";
 import "antd/dist/antd.css";
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  Spin,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete,
-  DatePicker
-} from "antd";
-import { Layout, Menu, Breadcrumb } from "antd";
-import { client } from "./Client";
+import React, {Component} from "react";
+import {Redirect} from "react-router-dom";
+import {client} from "./Client";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;

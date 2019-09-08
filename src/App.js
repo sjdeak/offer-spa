@@ -1,41 +1,18 @@
-import React, { Component } from "react";
+import {Button, Icon, Layout, Menu, Modal, Row} from "antd";
+import React, {Component} from "react";
+import {Link, Redirect, Route, Switch} from "react-router-dom";
 import "./App.css";
-import { BasicForm } from "./BasicForm";
-import { SkillForm } from "./SkillForm";
-import { ExperienceSection } from "./ExperienceSection";
-import { SelfIntro } from "./SelfIntro";
-import { ProjectShow, ResumeShow } from "./Show";
-import { Login } from "./Login";
-import { Switch, Link, Redirect, Route } from "react-router-dom";
-
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  Modal,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete,
-  DatePicker
-} from "antd";
-import { Layout, Menu, Breadcrumb } from "antd";
+import {client} from "./Client";
 import {
   BasicFormContainer,
-  SkillFormContainer,
-  SelfIntroContainer,
   ExperienceSectionContainer,
-  ResumeShowContainer
+  ResumeShowContainer,
+  SelfIntroContainer,
+  SkillFormContainer
 } from "./Containers/FormContainer";
-import { PrivateRoute, LoginRoute } from "./PrivateRoute";
-import { client } from "./Client";
+import {Login} from "./Login";
+import {LoginRoute, PrivateRoute} from "./PrivateRoute";
+import {ProjectShow} from "./Show";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;

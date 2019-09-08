@@ -1,23 +1,8 @@
-import React from "react";
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete
-} from "antd";
-import { SkillTags } from "./SkillTags";
-import { DIRECTIONS, TIME } from "./consts";
+import { Button, Checkbox, Col, Form, Radio, Row, Select } from "antd";
 import { message } from "antd/lib/index";
+import React from "react";
+import { DIRECTIONS, TIME } from "./consts";
+import { SkillTags } from "./SkillTags";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;

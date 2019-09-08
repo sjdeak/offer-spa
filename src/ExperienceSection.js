@@ -1,28 +1,8 @@
-import React from "react";
-import {
-  Upload,
-  InputNumber,
-  Form,
-  Input,
-  Tooltip,
-  message,
-  Modal,
-  Divider,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Radio,
-  Button,
-  AutoComplete,
-  DatePicker
-} from "antd";
-import { SkillTags } from "./SkillTags";
-import { DIRECTIONS, TIME } from "./consts";
-import { ExperienceForm } from "./ExperienceForm";
+import {Button, Checkbox, Col, DatePicker, Divider, Form, Icon, message, Modal, Radio, Row, Select} from "antd";
 import moment from "moment";
+import React from "react";
+import {ExperienceForm} from "./ExperienceForm";
+
 const ButtonGroup = Button.Group;
 
 const RangePicker = DatePicker.RangePicker;

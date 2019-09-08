@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 
 const account = (state = false, action) => {
   switch (action.type) {

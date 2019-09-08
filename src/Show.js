@@ -1,9 +1,9 @@
+import { Button, Layout } from "antd";
 import React from "react";
-import { Button, Layout, Row } from "antd";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
-import { DIRECTIONS, TIME } from "./consts";
 import { getLabel } from "./antd-utility";
+import { DIRECTIONS, TIME } from "./consts";
 import { projectIntroText } from "./texts";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -76,29 +76,29 @@ export const ResumeShow = props => {
   )}
 * 期望从事的职位
 ${skill.positions_time
-    .map(
-      ({ position, time }) =>
-        "  * " +
-        getLabel(DIRECTIONS[skill.direction].positions, position) +
-        "  " +
-        "工作经验: " +
-        time +
-        "年"
-    )
-    .join("\n")}
+  .map(
+    ({ position, time }) =>
+      "  * " +
+      getLabel(DIRECTIONS[skill.direction].positions, position) +
+      "  " +
+      "工作经验: " +
+      time +
+      "年"
+  )
+  .join("\n")}
 * 职业技能: ${skill.skills.join(", ")}
 
 
 # 教育经历
 ${experience.educationRecords
-    .map(({ school, degree, major, duration }) =>
-      `
+  .map(({ school, degree, major, duration }) =>
+    `
 * ${school}  ${degree}
   * 专业: ${major}
   * 时间: ${duration[0]} 至 ${duration[1]}
 `.trim()
-    )
-    .join("\n")}
+  )
+  .join("\n")}
 
 
 # 个人描述
