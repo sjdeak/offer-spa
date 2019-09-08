@@ -1,0 +1,1 @@
+{"version":3,"sources":["/Users/sjdeak/WebstormProjects/offer-spa/src/App.css","main.8bac4c55.chunk.css"],"names":[],"mappings":"AAIA,KACE,4BCCF","file":"main.8bac4c55.chunk.css","sourcesContent":[".App {\n  /*text-align: center;*/\n}\n\nbody {\n  background: #f0f2f5 !important;\n}\n",".App {\n  /*text-align: center;*/\n}\n\nbody {\n  background: #f0f2f5 !important;\n}\n\n"]}
