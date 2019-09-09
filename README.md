@@ -1,3 +1,5 @@
+[在线访问](https://sjdeak.github.io/offer-spa/)
+
 # 起源
 18年初的软件实训课上，我所在的小组做了一个仿照[100Offer](http://www.100offer.com/)的招聘网站，其中我负责用户简历模块的前端部分，因为初接触前端，只是用Bootstrap和HTML、CSS、JS完成了静态页面，并配合后端的要求做适当修改
 
